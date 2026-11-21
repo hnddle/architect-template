@@ -1,0 +1,23 @@
+# 아키텍처 다이어그램 규칙 — 색인
+
+이 폴더의 파일은 확장자가 없어 Claude Code가 자동으로 싣지 않는다. 설계 문서(`docs/04.design/**`)를 쓰거나 고칠 때 아래 표에서 맞는 규칙을 골라 먼저 읽는다. 모든 규칙의 공통 원칙은 셋이다.
+
+- **입력에 없는 액터 · 외부 시스템 · 수치를 지어내지 않는다.** 업종에서 흔하다는 이유로 추가하지 않고, 그리지 않은 것은 「넣지 않은 것과 그 이유」 표에 남긴다.
+- **판단할 정보가 없으면 가정을 세우고** 문서 끝 「가정 및 확인 필요」에 적는다.
+- **이름은 상위 다이어그램에서 그대로 가져온다.** 어긋나면 고치지 말고 보고한다.
+
+| 파일 | 언제 읽는가 | 결과 문서 |
+| --- | --- | --- |
+| [diagram-workflow](diagram-workflow) | **설계 문서 작업을 시작할 때 먼저** — 작업 순서 · 파일 번호 · ID · 문서 공통 구성 · 렌더 · 검증 · 동시 세션 · drift | 전부 |
+| [context-diagram](context-diagram) | 누가 쓰고 무엇에 의존하는가 | `01_c4_context.md` |
+| [container-component-diagram](container-component-diagram) | 실행 단위와 모듈 경계 | `02_c4_container.md` · `03_c4_component.md` · `03<x>_component_<컨테이너>.md` |
+| [component-package-mapping](component-package-mapping) | 컴포넌트와 코드 모듈 대응 · 아키텍처 검사(`AR-nn`) · 새 최상위 모듈을 만들 때 | `03` 매핑표 · 코드 |
+| [usecase](usecase) | UC 인덱스 · 정의 · 시나리오 · Use Case Diagram | `04_use_case_diagram.md` · `05*.md` |
+| [activity-diagram](activity-diagram) | UC를 Phase · 분기 · 예외로 엮은 Mermaid 워크플로우 | `06_activity_diagram.md` |
+| [deployment-diagram](deployment-diagram) | 어디에 몇 개가, 어떤 네트워크 경계에서 | `07_deployment_architecture.md` |
+| [data-flow-diagram](data-flow-diagram) | 데이터가 어디서 생겨 어디에 저장되고 누구에게 나가는가 | `09_data_flow_<기능>.md` |
+| [sequence](sequence) | 시나리오 하나의 시간 순서 상호작용 | `10_sequence_<기능>.md` |
+
+검사: `scripts/check-diagrams.sh` (Mermaid 문법까지 보려면 `--mermaid`).
+
+**그리는 도구**: Mermaid가 1차다 — 문서 안 블록이 정본이고 GitHub · 편집기가 그대로 그린다. 발표 · 검토용으로 더 다듬은 그림이 필요하면 archify 같은 렌더 플러그인을 추가로 쓸 수 있다(선택, [diagram-workflow](diagram-workflow) §6).

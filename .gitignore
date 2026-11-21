@@ -1,0 +1,24 @@
+# 하네스 설정은 공유한다 — .claude/rules, .claude/skills, .claude/settings.json, .specify.
+# 머신 · 세션에 종속된 로컬 상태 · 시크릿 · 실데이터 · 산출물만 제외한다.
+# 스택을 고르면 그 스택의 빌드 산출물 · 의존성 폴더를 아래에 더한다.
+
+# --- 시크릿 (값 없는 견본 .env.example 만 추적한다) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# --- 에이전트 · 도구 로컬 상태 ---
+.claude/settings.local.json
+
+# --- 운영 · 로컬 데이터 ---
+/backups/
+
+# --- 원자료 찌꺼기 ---
+# 사무 프로그램 잠금 파일 · 운영체제 파일 · 백업 사본
+~$*
+.DS_Store
+Thumbs.db
+*.bak-*
